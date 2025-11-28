@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <title>titolo</title>
+	<script src="main.js"<>/script>
+    <link href="style.css" />
+    <style>
+        #bottone {
+            transition: .2s;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+        }
+
+        #bottone:hover {
+            scale: 1.1;
+        }
+
+        #upgrade {
+            transition: .2s;
+            border: 2px solid blue;
+            cursor: pointer;
+            padding: 8px 16px;
+            text-align: center;
+            border-radius: 16px;
+            margin-top: 16px;
+            width: fit-content;
+
+            /*
+            justify-content: center; asse orizzontale
+            align-items: center; asse verticale
+            */
+        }
+
+        #upgrade:hover {
+            scale: 1.1;
+        }
+
+        img {
+            max-width: 100%;
+
+            width: 600px;
+        }
+
+        .punteggioContainer {
+            display: flex;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+        }
+        #punteggio {
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bottone">
+        <img src="cookie.png" />
+    </div>
+    <div id="upgrade">
+        Upgrade <div id="upgradeCost">10</div>
+    </div>
+    <div class="punteggioContainer">
+        Punteggio: <div id="punteggio">0</div>
+    </div>
+    <script>
+        const bottone = document.querySelector("#bottone")
+        const punteggio = document.querySelector("#punteggio")
+        const upgrade = document.querySelector("#upgrade")
+        const upgradeCostEl = document.querySelector("#upgradeCost")
+        let score = 0;
+        let scorePerClick = 1;
+        let upgradeCost = 10;
+        
+        
+        bottone.addEventListener("click", () => {
+            score = score + scorePerClick;
+            punteggio.innerHTML = score;
+        })
+        
+        upgrade.addEventListener("click", () => {
+            if(score >= upgradeCost) {
+                score = score - upgradeCost;
+                scorePerClick = scorePerClick * 2;
+                punteggio.innerHTML = score;
+                console.log(scorePerClick)
+                upgradeCost *= 3;
+                upgradeCostEl.innerHTML = upgradeCost;
+            }
+
+        })
+
+        
+    </script>
+</body>
+
